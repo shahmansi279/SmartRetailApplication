@@ -59,4 +59,6 @@
  <string name="placeName">Place Title</string>
   <string name="placeDesc">Description</string>
    <string name="placeAddr">Address</string>
+    <string name="title_activity_store_list">StoreListActivity</string>
+    <string name="title_activity_restaurant_list">RestaurantListActivity</string>
 </resources>

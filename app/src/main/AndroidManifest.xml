@@ -16,7 +16,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -26,30 +25,21 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
+
     <!-- These are optional, but recommended. They will allow Maps to use the My Location provider. -->
-
-
-
-
-
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MyMaterialTheme"
-
-        >
-
+        android:theme="@style/MyMaterialTheme" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.project.HomeActivity" />
-       
 
         <receiver android:name=".AutoStartBroadcastReceiver" >
             <intent-filter>
@@ -124,95 +114,95 @@
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
-            android:parentActivityName="com.project.LoginActivity" >
+            android:parentActivityName=".LoginActivity" >
             <action android:name="android.intent.action.HOME" />
         </activity>
-
         <activity
             android:name=".StoreDetailActivity"
             android:label="@string/title_activity_place_detail"
-            android:parentActivityName="com.project.HomeActivity" >
+            android:parentActivityName=".HomeActivity" >
         </activity>
-        
-       
-
         <activity
             android:name=".RestaurantDetailActivity"
             android:label="@string/title_activity_place_detail"
-            android:parentActivityName="com.project.HomeActivity" >
+            android:parentActivityName=".HomeActivity" >
         </activity>
         <activity
             android:name=".HomeAdminActivity"
-            android:label="@string/title_activity_home" 
-              android:parentActivityName="com.project.LoginActivity">
+            android:label="@string/title_activity_home"
+            android:parentActivityName=".LoginActivity" >
             <action android:name="android.intent.action.ADMINHOME" />
         </activity>
         <activity
             android:name=".BeaconListActivity"
-            android:label="@string/title_activity_login" 
-            android:parentActivityName="com.project.HomeAdminActivity" >
+            android:label="@string/title_activity_login"
+            android:parentActivityName=".HomeAdminActivity" >
             <action android:name="android.intent.action.VIEWBEACONS" />
         </activity>
-        
-         <activity
-                android:name=".MailActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.StoreDetailActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIL" />
-                </intent-filter>
-            </activity>
-            
-            <activity
-                android:name=".BeaconInfoActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.BeaconListActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.MAIL" />
-                </intent-filter>
-            </activity>
-            
-               <activity
-                android:name=".OfferItemActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.LoginActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.OFFER" />
-                </intent-filter>
-            </activity>
-              <activity
-                android:name=".EventsListActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.LoginActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.OFFER" />
-                </intent-filter>
-            </activity>
-          <activity
-                android:name=".EventDetailActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.LoginActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.OFFER" />
-                </intent-filter>
-            </activity>
-            
-          <activity
-                android:name=".AddStoreActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.LoginActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.ADDSTORE" />
-                </intent-filter>
-            </activity>
-              <activity
-                android:name=".GeofenceslistActivity"
-                android:label="@string/app_name"
-                android:parentActivityName="com.project.LoginActivity" >
-                <intent-filter>
-                    <action android:name="android.intent.action.GEOFENCES" />
-                </intent-filter>
-            </activity>
+        <activity
+            android:name=".MailActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".StoreDetailActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIL" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".BeaconInfoActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".BeaconListActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIL" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".OfferItemActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.OFFER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EventsListActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.OFFER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".EventDetailActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.OFFER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AddStoreActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.ADDSTORE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GeofenceslistActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".LoginActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.GEOFENCES" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".StoreListActivity"
+            android:label="@string/title_activity_store_list" >
+        </activity>
+        <activity
+            android:name=".RestaurantListActivity"
+            android:label="@string/title_activity_restaurant_list" >
+        </activity>
     </application>
 
 </manifest>
