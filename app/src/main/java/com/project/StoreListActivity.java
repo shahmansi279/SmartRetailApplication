@@ -115,7 +115,7 @@ public class StoreListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smartapp/default/getplaces?uemail="
+        String url = "http://smartretailapp.appspot.com/smartapp/default/getstores?uemail="
                 + this.username + "&password=" + this.password;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

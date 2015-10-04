@@ -41,7 +41,7 @@ public class RestaurantListActivity extends ActionBarActivity {
     public EditText editText;
     private String username = null;
     private String password = null;
-    public CustomListAdapter adapter;
+    public CustomRestaurantListAdapter adapter;
     ArrayList<StoreInfo> stores = new ArrayList<StoreInfo>();
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class RestaurantListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smartapp/default/getplaces?uemail="
+        String url = "http://smartretailapp.appspot.com/smartapp/default/getrestaurants?uemail="
                 + this.username + "&password=" + this.password;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -181,8 +181,8 @@ public class RestaurantListActivity extends ActionBarActivity {
 
             if (result == "success") {
 
-                adapter = new CustomListAdapter(RestaurantListActivity.this,
-                        R.layout.activity_store_item, stores);
+                adapter = new CustomRestaurantListAdapter(RestaurantListActivity.this,
+                        R.layout.activity_restaurant_item, stores);
 
                 mListView.setAdapter(adapter);
 
@@ -191,7 +191,7 @@ public class RestaurantListActivity extends ActionBarActivity {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
 
-                        ((CustomListAdapter) parent.getAdapter())
+                        ((CustomRestaurantListAdapter) parent.getAdapter())
                                 .setSelectedPosition(position);
                         StoreInfo place = (StoreInfo) parent
                                 .getItemAtPosition(position);
