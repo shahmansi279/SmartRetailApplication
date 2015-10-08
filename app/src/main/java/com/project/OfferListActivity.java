@@ -183,7 +183,7 @@ public class OfferListActivity extends Activity {
 
 			if (result == "success") {
 
-				adapter = new CustomOffersListAdapter(OfferListActivity.this,
+			adapter = new CustomOffersListAdapter(OfferListActivity.this,
 						R.layout.activity_offer_item, offers);
 
 				mListView.setAdapter(adapter);
