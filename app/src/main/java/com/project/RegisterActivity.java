@@ -55,7 +55,7 @@ public class RegisterActivity extends Activity {
 				&& zipcode.getText().toString() != null
 				&& phone_no.getText().toString() != null) {
 			
-			String url = "http://smartretailapp.appspot.com/smartapp/default/register"
+			String url = "http://smartretailapp.appspot.com/smapp/default/register"
 					+ "?uemail=" + username.getText().toString() 
 					+ "&password=" + password.getText().toString() 
 					+ "&phone=" + phone_no.getText().toString() 

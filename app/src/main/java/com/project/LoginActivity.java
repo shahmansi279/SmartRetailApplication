@@ -50,7 +50,7 @@ public class LoginActivity extends Activity {
 		if (username.getText().toString() != null
 				&& password.getText().toString() != null) {
 
-			String url = "https://smartretailapp.appspot.com/smartapp/default/login"
+			String url = "https://smartretailapp.appspot.com/smapp/default/login"
 
 					+ "?uemail="
 					+ username.getText().toString()

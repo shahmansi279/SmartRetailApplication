@@ -8,6 +8,7 @@ public class OfferInfo {
 	private String offerPlaceId;
 	private String offerIconUrl;
 	private String offerValidity;
+	private String offerZipcode;
 
 	public String getOfferValidity() {
 		return offerValidity;
@@ -55,6 +56,14 @@ public class OfferInfo {
 
 	public void setOfferIconUrl(String offerIconUrl) {
 		this.offerIconUrl = offerIconUrl;
+	}
+
+	public String getOfferZipcode() {
+		return offerZipcode;
+	}
+
+	public void setOfferZipcode(String offerZipcode) {
+		this.offerZipcode = offerZipcode;
 	}
 
 }

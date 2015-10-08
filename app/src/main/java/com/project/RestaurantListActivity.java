@@ -107,7 +107,7 @@ public class RestaurantListActivity extends ActionBarActivity {
         //testing code
     /*	String placeid="634226EF4C414B2DA65EE36E9D9B2C17";
 		Intent t = new Intent(getApplicationContext(),
-				OfferItemActivity.class);
+				OfferDetailActivity.class);
 		t.putExtra("placeid", placeid);
 		startActivity(t);*/
 
@@ -115,7 +115,7 @@ public class RestaurantListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smartapp/default/getrestaurants?uemail="
+        String url = "http://smartretailapp.appspot.com/smapp/default/getrestaurants?uemail="
                 + this.username + "&password=" + this.password;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -156,7 +156,7 @@ public class RestaurantListActivity extends ActionBarActivity {
                         c.setStoreName(ob.get("name").toString());
                         c.setStoreDesc(ob.get("place_desc").toString());
                         c.setStoreTiming(ob.get("pl_timing").toString());
-                        c.setStoreUrl("http://smartretailapp.appspot.com/smartapp/default/download/"
+                        c.setStoreUrl("http://smartretailapp.appspot.com/smapp/default/download/"
                                 + ob.get("pl_img_url").toString());
 
                         c.setStoreId(ob.get("id_p").toString());
@@ -204,7 +204,7 @@ public class RestaurantListActivity extends ActionBarActivity {
                         String storeId = place.getStoreId();
                         String storeT = place.getStoreTiming();
                         Intent t = new Intent(getApplicationContext(),
-                                StoreDetailActivity.class);
+                                RestaurantDetailActivity.class);
                         t.putExtra("storeName", storeName);
                         t.putExtra("storeDesc", storeDesc);
                         t.putExtra("storeAddr", storeAddr);

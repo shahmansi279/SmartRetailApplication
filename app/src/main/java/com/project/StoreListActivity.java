@@ -107,7 +107,7 @@ public class StoreListActivity extends ActionBarActivity {
         //testing code
     /*	String placeid="634226EF4C414B2DA65EE36E9D9B2C17";
 		Intent t = new Intent(getApplicationContext(),
-				OfferItemActivity.class);
+				OfferDetailActivity.class);
 		t.putExtra("placeid", placeid);
 		startActivity(t);*/
 
@@ -115,7 +115,7 @@ public class StoreListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smartapp/default/getstores?uemail="
+        String url = "http://smartretailapp.appspot.com/smapp/default/getstores?uemail="
                 + this.username + "&password=" + this.password;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -143,7 +143,7 @@ public class StoreListActivity extends ActionBarActivity {
             try {
 
                 response = ConnectionUtil.downloadUrl(urls[0]);
-
+Log.v("res",response);
 
                 if (response != "error") {
 
@@ -156,7 +156,7 @@ public class StoreListActivity extends ActionBarActivity {
                         c.setStoreName(ob.get("name").toString());
                         c.setStoreDesc(ob.get("place_desc").toString());
                         c.setStoreTiming(ob.get("pl_timing").toString());
-                        c.setStoreUrl("http://smartretailapp.appspot.com/smartapp/default/download/"
+                        c.setStoreUrl("http://smartretailapp.appspot.com/smapp/default/download/"
                                 + ob.get("pl_img_url").toString());
 
                         c.setStoreId(ob.get("id_p").toString());

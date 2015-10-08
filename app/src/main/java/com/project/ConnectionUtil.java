@@ -19,7 +19,7 @@ public class ConnectionUtil {
     public static String downloadUrl(String url) {
 
 
-        int code = 0, len = 500;
+        int code = 0, len =2000;
         InputStream is = null;
 
         String contentAsString = "";
