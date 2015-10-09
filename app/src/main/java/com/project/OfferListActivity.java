@@ -36,25 +36,28 @@ import android.widget.Toast;
 
 @SuppressWarnings("deprecation")
 public class OfferListActivity extends Activity {
-	private GimbalEventReceiver gimbalEventReceiver;
-	private GimbalEventListAdapter adapter1;
-	public ListView mListView;
-	public EditText editText;
-	private String username = null;
-	private String password = null;
-	public CustomOffersListAdapter adapter;
-	ArrayList<OfferInfo> offers = new ArrayList<OfferInfo>();
+    private GimbalEventReceiver gimbalEventReceiver;
+    private GimbalEventListAdapter adapter1;
+    public ListView mListView;
+    public EditText editText;
+    private String username = null;
+    private String password = null;
+    private String zipcode = null;
+    public CustomOffersListAdapter adapter;
+    ArrayList<OfferInfo> offers = new ArrayList<OfferInfo>();
 
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_offer_list);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_offer_list);
 
-		Intent i = getIntent();
-		this.username = i.getStringExtra("username");
-		this.password = i.getStringExtra("password");
+        Intent i = getIntent();
+        this.username = i.getStringExtra("username");
+        this.password = i.getStringExtra("password");
 
-		ActionBar actionBar = getActionBar();
-		// add the custom view to the action bar
+        this.zipcode = i.getStringExtra("loc_zip_code");
+
+        ActionBar actionBar = getActionBar();
+        // add the custom view to the action bar
 /*	actionBar.setCustomView(R.layout.actionbar_view);
 
 	//	EditText search = (EditText) actionBar.getCustomView().findViewById(
@@ -83,16 +86,16 @@ public class OfferListActivity extends Activity {
 				| ActionBar.DISPLAY_SHOW_HOME);
 				*/
 
-		mListView = (ListView) findViewById(android.R.id.list);
+        mListView = (ListView) findViewById(android.R.id.list);
 
-		try {
-			getSearchResults();
+        try {
+            getSearchResults();
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//code to start monitoring
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //code to start monitoring
 
 		/*startService(new Intent(this, AppService.class));
 
@@ -112,159 +115,168 @@ public class OfferListActivity extends Activity {
 		t.putExtra("placeid", placeid);
 		startActivity(t);*/
 
-	}
+    }
 
-	public void getSearchResults() throws IOException {
+    public void getSearchResults() throws IOException {
 
-		String url = "http://smartretailapp.appspot.com/smapp/default/getoffers?uemail="
-				+ this.username + "&password=" + this.password;
+        String url;
 
-		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-		if (networkInfo != null && networkInfo.isConnected()) {
+        if (zipcode == "")
 
-			DownloadWebPageTask task = new DownloadWebPageTask();
-			task.execute(url);
-		} else {
+            url = "http://smartretailapp.appspot.com/smapp/default/getoffers?uemail="
+                    + this.username + "&password=" + this.password;
 
-		}
+        else
 
-	}
+            url = "http://smartretailapp.appspot.com/smapp/default/getoffersnearby?uemail="
+                    + this.username + "&password=" + this.password + "&zipcode" + this.zipcode;
 
-	private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
 
-		protected String doInBackground(String... urls) {
+            DownloadWebPageTask task = new DownloadWebPageTask();
+            task.execute(url);
+        } else {
 
-			String response = "";
+        }
 
+    }
 
-			int code = 0;
+    private class DownloadWebPageTask extends AsyncTask<String, Void, String> {
 
+        protected String doInBackground(String... urls) {
 
-			try {
-
-				response = ConnectionUtil.downloadUrl(urls[0]);
-				Log.v("res",response);
-
-				if (response != "error") {
+            String response = "";
 
 
-					JSONArray jso = new JSONArray(response);
+            int code = 0;
 
-					for (int i = 0; i < jso.length(); i++) {
-						OfferInfo c = new OfferInfo();
-						JSONObject ob = (JSONObject) jso.get(i);
-						c.setOfferTitle(ob.get("offer_title").toString());
-						c.setOfferDesc(ob.get("offer_desc").toString());
-						c.setOfferValidity(ob.get("offer_validity").toString());
-						c.setOfferIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
-								+ ob.get("offer_img_url").toString());
 
-						c.setOfferId(ob.get("id").toString());
-						c.setOfferZipcode(ob.get("offer_zipcode").toString());
-						c.setOfferPlaceId(ob.get("offer_place_id").toString());
+            try {
 
-						offers.add(c);
-					}
-					response = "success";
-				} else {
+                response = ConnectionUtil.downloadUrl(urls[0]);
+                Log.v("res", response);
 
-					response = "No Offers to Display";
-				}
+                if (response != "error") {
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
-			return response;
-		}
+                    JSONArray jso = new JSONArray(response);
 
-		protected void onPostExecute(String result) {
+                    for (int i = 0; i < jso.length(); i++) {
+                        OfferInfo c = new OfferInfo();
+                        JSONObject ob = (JSONObject) jso.get(i);
+                        c.setOfferTitle(ob.get("offer_title").toString());
+                        c.setOfferDesc(ob.get("offer_desc").toString());
+                        c.setOfferValidity(ob.get("offer_validity").toString());
+                        c.setOfferIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
+                                + ob.get("offer_img_url").toString());
 
-			if (result == "success") {
+                        c.setOfferId(ob.get("id").toString());
+                        c.setOfferZipcode(ob.get("offer_zipcode").toString());
+                        c.setOfferPlaceId(ob.get("offer_place_id").toString());
 
-			adapter = new CustomOffersListAdapter(OfferListActivity.this,
-						R.layout.activity_offer_item, offers);
+                        offers.add(c);
+                    }
+                    response = "success";
+                } else {
 
-				mListView.setAdapter(adapter);
+                    response = "No Offers to Display";
+                }
 
-				mListView.setOnItemClickListener(new OnItemClickListener() {
-					@Override
-					public void onItemClick(AdapterView<?> parent, View view,
-											int position, long id) {
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-						((CustomOffersListAdapter) parent.getAdapter())
-								.setSelectedPosition(position);
-						OfferInfo place = (OfferInfo) parent
-								.getItemAtPosition(position);
+            return response;
+        }
 
-						// String placeUrl = Place.getPlaceUrl();
-						String OfferTitle = place.getOfferTitle();
-						String OfferZipcode = place.getOfferZipcode();
-						String OfferDesc = place.getOfferDesc();
-						String OfferUrl = place.getOfferIconUrl();
-						String OfferId = place.getOfferId();
-						String OfferT = place.getOfferValidity();
-						Intent t = new Intent(getApplicationContext(),
-								OfferDetailActivity.class);
-						t.putExtra("OfferTitle", OfferTitle);
-						t.putExtra("OfferDesc", OfferDesc);
-						t.putExtra("OfferZipcode", OfferZipcode);
-						t.putExtra("OfferUrl", OfferUrl);
-						t.putExtra("username", username);
-						t.putExtra("password", password);
-						t.putExtra("OfferId", OfferId);
-						t.putExtra("OfferT", OfferT);
-						startActivity(t);
+        protected void onPostExecute(String result) {
 
-					}
-				});
+            if (result == "success") {
 
-			} else {
-				Toast.makeText(getApplicationContext(), result,
-						Toast.LENGTH_SHORT).show();
+                adapter = new CustomOffersListAdapter(OfferListActivity.this,
+                        R.layout.activity_offer_item, offers);
 
-			}
+                mListView.setAdapter(adapter);
 
-		}
-	}
+                mListView.setOnItemClickListener(new OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
 
-	@SuppressLint("NewApi")
-	public boolean onCreateOptionsMenu(Menu menu) {
+                        ((CustomOffersListAdapter) parent.getAdapter())
+                                .setSelectedPosition(position);
+                        OfferInfo place = (OfferInfo) parent
+                                .getItemAtPosition(position);
 
-		super.onCreateOptionsMenu(menu);
-		getMenuInflater().inflate(R.menu.main, menu);
+                        // String placeUrl = Place.getPlaceUrl();
+                        String OfferTitle = place.getOfferTitle();
+                        String OfferZipcode = place.getOfferZipcode();
+                        String OfferDesc = place.getOfferDesc();
+                        String OfferUrl = place.getOfferIconUrl();
+                        String OfferId = place.getOfferId();
+                        String OfferT = place.getOfferValidity();
+                        Intent t = new Intent(getApplicationContext(),
+                                OfferDetailActivity.class);
+                        t.putExtra("OfferTitle", OfferTitle);
+                        t.putExtra("OfferDesc", OfferDesc);
+                        t.putExtra("OfferZipcode", OfferZipcode);
+                        t.putExtra("OfferUrl", OfferUrl);
+                        t.putExtra("username", username);
+                        t.putExtra("password", password);
+                        t.putExtra("OfferId", OfferId);
+                        t.putExtra("OfferT", OfferT);
+                        startActivity(t);
 
-		return super.onCreateOptionsMenu(menu);
+                    }
+                });
 
-	}
+            } else {
+                Toast.makeText(getApplicationContext(), result,
+                        Toast.LENGTH_SHORT).show();
 
-	private void registerForPush(String gcmSenderId) {
-		if (gcmSenderId != null) {
-			Gimbal.registerForPush(gcmSenderId);
-		}
-	}
+            }
 
-	public void onNotNowClicked(View view) {
-		GimbalDAO.setOptInShown(getApplicationContext());
-		PlaceManager.getInstance().stopMonitoring();
-		finish();
-	}
+        }
+    }
 
-	public void onEnableClicked(View view) {
-		// GimbalDAO.setOptInShown(getApplicationContext());
+    @SuppressLint("NewApi")
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-		Toast.makeText(getApplicationContext(), "In Enable Clicked",
-				Toast.LENGTH_SHORT).show();
+        super.onCreateOptionsMenu(menu);
+        getMenuInflater().inflate(R.menu.main, menu);
 
-		PlaceManager.getInstance().startMonitoring();
-		CommunicationManager.getInstance().startReceivingCommunications();
+        return super.onCreateOptionsMenu(menu);
 
-		// Setup Push Communication
-		String gcmSenderId = "596028915255"; // <--- SET THIS STRING TO YOUR
-		// PUSH SENDER ID HERE (Google
-		// API project #) ##
-		registerForPush(gcmSenderId);
+    }
 
-	}
+    private void registerForPush(String gcmSenderId) {
+        if (gcmSenderId != null) {
+            Gimbal.registerForPush(gcmSenderId);
+        }
+    }
+
+    public void onNotNowClicked(View view) {
+        GimbalDAO.setOptInShown(getApplicationContext());
+        PlaceManager.getInstance().stopMonitoring();
+        finish();
+    }
+
+    public void onEnableClicked(View view) {
+        // GimbalDAO.setOptInShown(getApplicationContext());
+
+        Toast.makeText(getApplicationContext(), "In Enable Clicked",
+                Toast.LENGTH_SHORT).show();
+
+        PlaceManager.getInstance().startMonitoring();
+        CommunicationManager.getInstance().startReceivingCommunications();
+
+        // Setup Push Communication
+        String gcmSenderId = "596028915255"; // <--- SET THIS STRING TO YOUR
+        // PUSH SENDER ID HERE (Google
+        // API project #) ##
+        registerForPush(gcmSenderId);
+
+    }
 }

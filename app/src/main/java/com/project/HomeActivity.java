@@ -35,10 +35,16 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
     private AddressResultReceiver mResultReceiver;
     protected boolean mAddressRequested;
 
+    protected static final String ADDRESS_REQUESTED_KEY = "address-request-pending";
+    protected static final String LOCATION_ADDRESS_KEY = "location-address";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        mResultReceiver = new AddressResultReceiver(new Handler());
+        mAddressOutput = "";
 
         Intent i = getIntent();
         this.username = i.getStringExtra("username");
@@ -60,8 +66,8 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         super.onStart();
         mAddressRequested = true;
 
-        Log.v("Conn","Connecting to Google Client");
-        showToast("Connecting to Google Client");
+        Log.v("Conn", "Connecting to Google Client");
+     //   showToast("Connecting to Google Client");
         mGoogleApiClient.connect();
 
 
@@ -85,9 +91,9 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         // Gets the best and most recent location currently available, which may be null
         // in rare cases when a location is not available.
 
-        showToast("Connected to Google Client");
-        startIntentService();
-       /* mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+       // showToast("Connected to Google Client");
+
+       mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         showToast("mLastLocation"+ mLastLocation);
         if (mLastLocation != null) {
             // Determine whether a Geocoder is available.
@@ -102,10 +108,10 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
             // user has requested an address, since we now have a connection to GoogleApiClient.
             if (mAddressRequested) {
 
-                showToast("Starting Intent Service");
+               // showToast("Starting Intent Service");
                 startIntentService();
             }
-        }*/
+        }
     }
 
     /**
@@ -131,7 +137,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
     @Override
     public void onConnectionFailed(ConnectionResult result) {
 
-        showToast("On Connection Failed");
+       // showToast("On Connection Failed");
         // Refer to the javadoc for ConnectionResult to see what error codes might be returned in
         // onConnectionFailed.
         Log.i("Tag", "Connection failed: ConnectionResult.getErrorCode() = " + result.getErrorCode());
@@ -141,7 +147,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
     @Override
     public void onConnectionSuspended(int cause) {
 
-        showToast("On Connection Suspended");
+       // showToast("On Connection Suspended");
         // The connection to Google Play services was lost for some reason. We call connect() to
         // attempt to re-establish the connection.
         Log.i("Tag", "Connection suspended");
@@ -154,6 +160,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         intent_name.setClass(getApplicationContext(), StoreListActivity.class);
         intent_name.putExtra("username", username);
         intent_name.putExtra("password", password);
+        intent_name.putExtra("loc_zip_code",mAddressOutput);
         startActivity(intent_name);
     }
 
@@ -162,6 +169,8 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         intent_name.setClass(getApplicationContext(), RestaurantListActivity.class);
         intent_name.putExtra("username", username);
         intent_name.putExtra("password", password);
+        intent_name.putExtra("loc_zip_code",mAddressOutput);
+
         startActivity(intent_name);
     }
 
@@ -170,6 +179,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         intent_name.setClass(getApplicationContext(), OfferListActivity.class);
         intent_name.putExtra("username", username);
         intent_name.putExtra("password", password);
+        intent_name.putExtra("loc_zip_code",mAddressOutput);
         startActivity(intent_name);
     }
 
@@ -178,6 +188,8 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         intent_name.setClass(getApplicationContext(), EventsListActivity.class);
         intent_name.putExtra("username", username);
         intent_name.putExtra("password", password);
+        intent_name.putExtra("loc_zip_code",mAddressOutput);
+
         startActivity(intent_name);
     }
 
@@ -216,14 +228,21 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
 
+           // showToast("ON Receive Result");
+
             // Display the address string or an error message sent from the intent service.
             mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
 
             // Show a toast message if an address was found.
             if (resultCode == Constants.SUCCESS_RESULT) {
-                showToast(mAddressOutput);
+                //showToast(mAddressOutput);
             }
 
+            else
+            {
+                showToast("Error Fetching location");
+                mAddressOutput="";
+            }
             // Reset. Enable the Fetch Address button and stop showing the progress bar.
             mAddressRequested = false;
 

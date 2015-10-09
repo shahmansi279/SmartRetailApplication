@@ -35,6 +35,8 @@ public class EventsListActivity extends Activity {
     public String password = null;
     public CustomEventsListAdapter adapterB;
     private String placeId = null;
+    private String zipcode = null;
+
     ArrayList<EventInfo> events = new ArrayList<EventInfo>();
 
     @Override
@@ -46,6 +48,7 @@ public class EventsListActivity extends Activity {
         this.username = i.getStringExtra("username");
         this.password = i.getStringExtra("password");
         this.placeId = i.getStringExtra("placeId");
+        this.zipcode = i.getStringExtra("loc_zip_code");
 
       /*  ActionBar actionBar = getActionBar();
         // add the custom view to the action bar
@@ -87,9 +90,18 @@ public class EventsListActivity extends Activity {
     }
 
     public void getSearchResults() throws IOException {
+        String url;
 
-        String url = "http://smartapp-service.appspot.com/smartapp/default/getevents?uemail="
-                + this.username + "&password=" + this.password + "&place_id=" + this.placeId;
+        if (zipcode == "")
+
+            url = "http://smartretailapp.appspot.com/smapp/default/getevents?uemail="
+                    + this.username + "&password=" + this.password;
+
+        else
+
+            url = "http://smartretailapp.appspot.com/smapp/default/geteventsnearby?uemail="
+                    + this.username + "&password=" + this.password + "&zipcode" + this.zipcode;
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
