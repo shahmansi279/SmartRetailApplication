@@ -17,6 +17,9 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.widget.Toast;
 
+import com.gimbal.android.CommunicationManager;
+import com.gimbal.android.Gimbal;
+import com.gimbal.android.PlaceManager;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
@@ -50,9 +53,37 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         this.username = i.getStringExtra("username");
         this.password = i.getStringExtra("password");
 
+
+
+        startGimbalMonitoring();
+
         buildGoogleApiClient();
     }
 
+
+
+    public void startGimbalMonitoring(){
+
+
+        PlaceManager.getInstance().startMonitoring();
+        CommunicationManager.getInstance().startReceivingCommunications();
+
+        // Setup Push Communication
+        String gcmSenderId = "642988732524"; // <--- SET THIS STRING TO YOUR
+        // PUSH SENDER ID HERE (Google
+        // API project #) ##
+        registerForPush(gcmSenderId);
+
+
+
+
+    }
+
+    private void registerForPush(String gcmSenderId) {
+        if (gcmSenderId != null) {
+            Gimbal.registerForPush(gcmSenderId);
+        }
+    }
 
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -216,6 +247,8 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
     protected void showToast(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
+
+
 
     class AddressResultReceiver extends ResultReceiver {
         public AddressResultReceiver(Handler handler) {

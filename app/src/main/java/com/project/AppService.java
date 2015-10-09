@@ -58,9 +58,9 @@ public class AppService extends Service {
 				GimbalDAO.getEvents(getApplicationContext()));
 
 		Gimbal.setApiKey(this.getApplication(),
-				"");
-	//	Toast.makeText(getApplicationContext(), "Starting App Service",
-	//			Toast.LENGTH_SHORT).show();
+				"54691f4f-73c8-47c8-b5e8-79aeab6d39c5");
+		Toast.makeText(getApplicationContext(), "Starting App Service",
+			Toast.LENGTH_SHORT).show();
 
 		// Setup PlaceEventListener
 		placeEventListener = new PlaceEventListener() {
@@ -84,7 +84,7 @@ public class AppService extends Service {
 		
 					intent.putExtra("placeid", visit.getPlace().getIdentifier());
 					ComponentName cn = new ComponentName(
-							getApplicationContext(), OfferListActivity.class);
+							getApplicationContext(), ContextOfferItem.class);
 					intent.setComponent(cn);
 					startActivity(intent);
 
