@@ -26,7 +26,6 @@
     <!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -38,6 +37,10 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.project.HomeActivity" />
+
+        <service
+            android:name=".FetchAddressIntentService"
+            android:exported="true"></service>
 
         <receiver android:name=".AutoStartBroadcastReceiver" >
             <intent-filter>
@@ -78,6 +81,8 @@
                 <action android:name="com.project.service.GIMBAL_SERVICE" />
             </intent-filter>
         </service>
+
+
 
         <receiver
             android:name="com.gimbal.internal.service.GimbalServiceStartStopReceiver"
@@ -206,12 +211,12 @@
             android:name=".RestaurantListActivity"
             android:label="@string/title_activity_restaurant_list" >
         </activity>
-        <activity
+        <!--<activity
             android:name=".UploadActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_upload"
             android:theme="@style/FullscreenTheme" >
-        </activity>
+        </activity>-->
     </application>
 
 </manifest>

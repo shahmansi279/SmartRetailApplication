@@ -61,4 +61,19 @@
    <string name="placeAddr">Address</string>
     <string name="title_activity_store_list">StoreListActivity</string>
     <string name="title_activity_restaurant_list">RestaurantListActivity</string>
+    <string name="btnUploadToServer">Upload</string>
+    <string name="title_activity_upload">UploadActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="no_geocoder_available">No geocoder available</string>
+
+    <string name="fetch_address">Fetch address</string>
+
+    <string name="address_found">Address found</string>
+
+    <string name="no_address_found">Sorry, no address found</string>
+    <string name="no_location_data_provided">No location data provided</string>
+    <string name="service_not_available">Sorry, the service is not available</string>
+    <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
 </resources>

@@ -94,7 +94,7 @@ public class OfferListActivity extends Activity {
 		}
 		//code to start monitoring
 
-		//startService(new Intent(this, AppService.class));
+		/*startService(new Intent(this, AppService.class));
 
 		PlaceManager.getInstance().startMonitoring();
 		CommunicationManager.getInstance().startReceivingCommunications();

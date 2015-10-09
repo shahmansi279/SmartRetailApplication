@@ -123,8 +123,8 @@ public class LoginActivity extends Activity {
 
 				} else {
 
-					startService(new Intent(getApplicationContext(),
-							AppService.class));
+					//startService(new Intent(getApplicationContext(),
+					//		AppService.class));
 					Intent intent_name = new Intent();
 					intent_name.setClass(getApplicationContext(),
 							HomeActivity.class);

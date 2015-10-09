@@ -47,7 +47,7 @@ public class EventsListActivity extends Activity {
         this.password = i.getStringExtra("password");
         this.placeId = i.getStringExtra("placeId");
 
-        ActionBar actionBar = getActionBar();
+      /*  ActionBar actionBar = getActionBar();
         // add the custom view to the action bar
         actionBar.setCustomView(R.layout.actionbar_view);
         EditText search = (EditText) actionBar.getCustomView().findViewById(
@@ -73,7 +73,7 @@ public class EventsListActivity extends Activity {
             }
         });
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
-                | ActionBar.DISPLAY_SHOW_HOME);
+                | ActionBar.DISPLAY_SHOW_HOME);*/
 
         mListView = (ListView) findViewById(android.R.id.list);
 

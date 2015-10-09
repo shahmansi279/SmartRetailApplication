@@ -84,7 +84,7 @@ public class AppService extends Service {
 		
 					intent.putExtra("placeid", visit.getPlace().getIdentifier());
 					ComponentName cn = new ComponentName(
-							getApplicationContext(), OfferItemActivity.class);
+							getApplicationContext(), OfferListActivity.class);
 					intent.setComponent(cn);
 					startActivity(intent);
 

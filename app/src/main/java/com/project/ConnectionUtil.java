@@ -1,7 +1,9 @@
 package com.project;
 
 import android.util.Log;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,7 +21,7 @@ public class ConnectionUtil {
     public static String downloadUrl(String url) {
 
 
-        int code = 0, len =2000;
+        int code = 0;
         InputStream is = null;
 
         String contentAsString = "";
@@ -31,10 +33,12 @@ public class ConnectionUtil {
             conn.setConnectTimeout(15000 /* milliseconds */);
             conn.setRequestMethod("GET");
             conn.setDoInput(true);
+
             // Starts the query
             conn.connect();
 
             code = conn.getResponseCode();
+
             if (code != 200)
 
             {
@@ -46,7 +50,7 @@ public class ConnectionUtil {
 
             // Convert the InputStream into a string
 
-            contentAsString = readIt(is, len);
+            contentAsString = readIt(is);
             is.close();
 
         } catch (IOException e) {
@@ -62,11 +66,28 @@ public class ConnectionUtil {
 
     }
 
-    public static String readIt(InputStream stream, int len) throws IOException, UnsupportedEncodingException {
-        Reader reader = null;
-        reader = new InputStreamReader(stream, "UTF-8");
-        char[] buffer = new char[len];
-        reader.read(buffer);
-        return new String(buffer);
+    public static String readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                stream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
     }
+
+
+
+
 }
