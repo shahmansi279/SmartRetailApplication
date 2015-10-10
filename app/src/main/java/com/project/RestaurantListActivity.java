@@ -205,14 +205,14 @@ public class RestaurantListActivity extends ActionBarActivity {
                         String storeT = place.getStoreTiming();
                         Intent t = new Intent(getApplicationContext(),
                                 RestaurantDetailActivity.class);
-                        t.putExtra("storeName", storeName);
-                        t.putExtra("storeDesc", storeDesc);
-                        t.putExtra("storeAddr", storeAddr);
-                        t.putExtra("storeUrl", storeUrl);
+                        t.putExtra("restName", storeName);
+                        t.putExtra("restDesc", storeDesc);
+                        t.putExtra("restAddr", storeAddr);
+                        t.putExtra("restUrl", storeUrl);
                         t.putExtra("username", username);
                         t.putExtra("password", password);
-                        t.putExtra("storeId", storeId);
-                        t.putExtra("storeT", storeT);
+                        t.putExtra("restId", storeId);
+                        t.putExtra("restT", storeT);
                         startActivity(t);
 
                     }
