@@ -6,8 +6,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/smartcity"
     tools:context="com.project.MainActivity"
+    android:background="@color/white"
     >
 
    <!--   <TextView
@@ -27,7 +27,6 @@
         android:id="@+id/button1"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="58dp"
         android:onClick="login"
         android:background="@color/btn_bg"
@@ -40,13 +39,20 @@
         android:id="@+id/button2"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-
         android:onClick="register"
         android:background="@color/btn_bg"
         android:textColor="@color/white"
         android:text="@string/register"
-        android:layout_marginStart="42dp"
         android:layout_alignTop="@+id/button1"
         android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="105dp"
+        android:src="@drawable/smartretailtext"/>
 
 </RelativeLayout>

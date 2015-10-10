@@ -55,7 +55,8 @@ public class OfferListActivity extends Activity {
         this.password = i.getStringExtra("password");
 
         this.zipcode = i.getStringExtra("loc_zip_code");
-
+        Toast.makeText(getApplicationContext(), this.zipcode,
+                Toast.LENGTH_SHORT).show();
         ActionBar actionBar = getActionBar();
         // add the custom view to the action bar
 /*	actionBar.setCustomView(R.layout.actionbar_view);

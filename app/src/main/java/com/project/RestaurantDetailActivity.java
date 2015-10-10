@@ -306,7 +306,7 @@ public class RestaurantDetailActivity extends FragmentActivity implements
 								.fromResource(R.drawable.loc)));
 
 				if (i == 0)
-					mMap.moveCamera( CameraUpdateFactory.newLatLngZoom((latLng) , 14.0f) );
+					mMap.moveCamera( CameraUpdateFactory.newLatLngZoom((latLng) , 18) );
 					//mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 			}
 		}
