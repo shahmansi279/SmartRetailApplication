@@ -140,7 +140,7 @@ public class EventsListActivity extends Activity {
                         c.setEventTitle(ob.get("event_title").toString());
                         c.setEventAddr(ob.get("event_addr").toString());
                         c.setEventDesc(ob.get("event_desc").toString());
-                        c.setEventIconUrl("http://smartapp-service.appspot.com/smartapp/default/download/"
+                        c.setEventIconUrl("http://smartapp-service.appspot.com/smapp/default/download/"
                                 + ob.get("ev_img_url").toString());
                         c.setEventTiming(ob.get("event_timing").toString());
 
