@@ -3,6 +3,7 @@ package com.project;
 
 
 import com.project.BeaconInfoActivity.DownloadWebPageTask;
+import com.project.util.Constants;
 
 import android.app.Activity;
 import android.content.Context;
@@ -62,7 +63,7 @@ public class BeaconInfoActivity extends Activity {
 
 	public void update_change(View v) {
 		this.flag = 1;
-		String url = "http://smartretailapp.appspot.com/smartapp/default/updateBeacon?uemail="
+		String url = Constants.SMARTAPP_CONTEXT+ "updateBeacon?uemail="
 				+ this.username
 				+ "&password="
 				+ this.password
@@ -88,7 +89,7 @@ public class BeaconInfoActivity extends Activity {
 		Log.v("status",status.getText().toString());
 		if (status.getText().toString().equals("Active")) {
 
-			url = "http://smartretailapp.appspot.com/smartapp/default/deActivateBeacon?uemail="
+			url = Constants.SMARTAPP_CONTEXT+"deActivateBeacon?uemail="
 					+ this.username
 					+ "&password="
 					+ this.password
@@ -100,7 +101,7 @@ public class BeaconInfoActivity extends Activity {
 			btState = "Activate Beacon";
 		} else {
 
-			url = "http://smartretailapp.appspot.com/smartapp/default/activateBeacon?uemail="
+			url = Constants.SMARTAPP_CONTEXT+"activateBeacon?uemail="
 					+ this.username
 					+ "&password="
 					+ this.password

@@ -25,6 +25,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.util.Constants;
+
 @SuppressWarnings("deprecation")
 public class LoginActivity extends Activity {
 
@@ -50,7 +52,7 @@ public class LoginActivity extends Activity {
 		if (username.getText().toString() != null
 				&& password.getText().toString() != null) {
 
-			String url = "https://smartretailapp.appspot.com/smapp/default/login"
+			String url = Constants.SMARTAPP_CONTEXT+"login"
 
 					+ "?uemail="
 					+ username.getText().toString()

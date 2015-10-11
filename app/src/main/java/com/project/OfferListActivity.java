@@ -10,6 +10,7 @@ import com.gimbal.android.CommunicationManager;
 import com.gimbal.android.Gimbal;
 import com.gimbal.android.PlaceManager;
 import com.project.AppActivity.GimbalEventReceiver;
+import com.project.util.Constants;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -124,12 +125,12 @@ public class OfferListActivity extends Activity {
 
         if (zipcode == "")
 
-            url = "http://smartretailapp.appspot.com/smapp/default/getoffers?uemail="
+            url = Constants.SMARTAPP_CONTEXT+"getoffers?uemail="
                     + this.username + "&password=" + this.password;
 
         else
 
-            url = "http://smartretailapp.appspot.com/smapp/default/getoffersnearby?uemail="
+            url = Constants.SMARTAPP_CONTEXT+"getoffersnearby?uemail="
                     + this.username + "&password=" + this.password + "&zipcode=" + this.zipcode;
 
 
@@ -172,7 +173,7 @@ public class OfferListActivity extends Activity {
                         c.setOfferTitle(ob.get("offer_title").toString());
                         c.setOfferDesc(ob.get("offer_desc").toString());
                         c.setOfferValidity(ob.get("offer_validity").toString());
-                        c.setOfferIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
+                        c.setOfferIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
                                 + ob.get("offer_img_url").toString());
 
                         c.setOfferId(ob.get("id").toString());

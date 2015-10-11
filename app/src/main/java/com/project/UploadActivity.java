@@ -27,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.project.util.Constants;
+
 @SuppressLint("NewApi")
 public class  UploadActivity extends Activity {
     // LogCat tag
@@ -167,7 +169,7 @@ public class  UploadActivity extends Activity {
 
                 String fileName = file.getName();
 
-                URL url = new URL("http://smartretailapp.appspot.com/smapp/default/upload");
+                URL url = new URL(Constants.SMARTAPP_CONTEXT+"upload");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setDoInput(true);
                 connection.setDoOutput(true);

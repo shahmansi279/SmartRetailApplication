@@ -10,6 +10,7 @@ import com.gimbal.android.CommunicationManager;
 import com.gimbal.android.Gimbal;
 import com.gimbal.android.PlaceManager;
 import com.project.AppActivity.GimbalEventReceiver;
+import com.project.util.Constants;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -115,7 +116,7 @@ public class StoreListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smapp/default/getstores?uemail="
+        String url = Constants.SMARTAPP_CONTEXT+"getstores?uemail="
                 + this.username + "&password=" + this.password;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -156,7 +157,7 @@ Log.v("res",response);
                         c.setStoreName(ob.get("name").toString());
                         c.setStoreDesc(ob.get("place_desc").toString());
                         c.setStoreTiming(ob.get("pl_timing").toString());
-                        c.setStoreUrl("http://smartretailapp.appspot.com/smapp/default/download/"
+                        c.setStoreUrl(Constants.SMARTAPP_CONTEXT+"download/"
                                 + ob.get("pl_img_url").toString());
 
                         c.setStoreId(ob.get("id_p").toString());

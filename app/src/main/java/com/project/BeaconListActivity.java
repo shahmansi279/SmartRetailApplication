@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.project.BeaconListActivity.DownloadWebPageTask;
+import com.project.util.Constants;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -63,7 +64,7 @@ public class BeaconListActivity extends Activity {
 
 	public void getSearchResults() throws IOException {
 
-		String url = "http://smartretailapp.appspot.com/smapp/default/getallbeacons?uemail="+ this.username
+		String url = Constants.SMARTAPP_CONTEXT+"getallbeacons?uemail="+ this.username
 				+ "&password=" + this.password +"&placeid="+ this.placeid ;
 
 
@@ -112,7 +113,7 @@ public class BeaconListActivity extends Activity {
 						c.setBeaconBatteryLvl(ob.get("b_battery_lvl")
 								.toString());
 						c.setBeaconFactId(ob.get("b_f_id").toString());
-						c.setBeaconIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
+						c.setBeaconIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
 								+ ob.get("beacon_img_url").toString());
 
 						c.setBeaconStatus(ob.get("beacon_status").toString());

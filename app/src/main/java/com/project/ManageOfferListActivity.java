@@ -38,6 +38,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.project.util.Constants;
+
 import java.util.Date;
 
 public class ManageOfferListActivity extends ActionBarActivity {
@@ -105,7 +108,7 @@ public class ManageOfferListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = "http://smartretailapp.appspot.com/smapp/default/getplaceoffers?uemail=" + this.username
+        String url = Constants.SMARTAPP_CONTEXT+ "getplaceoffers?uemail=" + this.username
                 + "&password=" + this.password +"&aplaceid="+ this.placeid ;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -146,7 +149,7 @@ public class ManageOfferListActivity extends ActionBarActivity {
                         c.setOfferTitle(ob.get("offer_title").toString());
                         c.setOfferDesc(ob.get("offer_desc").toString());
                         c.setOfferValidity(ob.get("offer_validity").toString());
-                        c.setOfferIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
+                        c.setOfferIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
                                 + ob.get("offer_img_url").toString());
 
                         c.setOfferId(ob.get("id").toString());

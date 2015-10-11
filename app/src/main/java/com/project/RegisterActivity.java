@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.project.util.Constants;
+
 @SuppressWarnings("deprecation")
 public class RegisterActivity extends Activity {
 
@@ -55,7 +57,7 @@ public class RegisterActivity extends Activity {
 				&& zipcode.getText().toString() != null
 				&& phone_no.getText().toString() != null) {
 			
-			String url = "http://smartretailapp.appspot.com/smapp/default/register"
+			String url = Constants.SMARTAPP_CONTEXT+"register"
 					+ "?uemail=" + username.getText().toString() 
 					+ "&password=" + password.getText().toString() 
 					+ "&phone=" + phone_no.getText().toString() 

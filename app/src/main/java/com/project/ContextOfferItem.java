@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 
 import com.project.BeaconListActivity.DownloadWebPageTask;
+import com.project.util.Constants;
 import com.squareup.picasso.Picasso;
 
 import android.app.Activity;
@@ -50,7 +51,7 @@ public class ContextOfferItem extends Activity {
     }
 
     private void getOffers(String placeid) {
-        String url = "http://smartapp-service.appspot.com/smartapp/default/getcontextualoffer?place_id="
+        String url = Constants.SMARTAPP_CONTEXT+"getcontextualoffer?place_id="
                 + placeid;
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -109,7 +110,7 @@ public class ContextOfferItem extends Activity {
                         c.setOfferTitle(ob.get("offer_title").toString());
                         c.setOfferId(ob.get("id").toString());
                         c.setOfferValidity(ob.get("offer_validity").toString());
-                        c.setOfferIconUrl("http://smartapp-service.appspot.com/smartapp/default/download/"
+                        c.setOfferIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
                                 + ob.get("offer_img_url").toString());
 
                         offers.add(c);

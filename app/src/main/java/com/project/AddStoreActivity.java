@@ -4,6 +4,7 @@ package com.project;
 
 
 import com.project.BeaconInfoActivity.DownloadWebPageTask;
+import com.project.util.Constants;
 
 import android.app.Activity;
 import android.content.Context;
@@ -53,7 +54,7 @@ public class AddStoreActivity extends Activity {
 	public void addPlace(View v){
 		
 	
-		String url = "http://smartapp-service.appspot.com/smartapp/default/addplace?uemail="
+		String url = Constants.SMARTAPP_CONTEXT+ "addplace?uemail="
 				+ this.username
 				+ "&password="
 				+ this.password

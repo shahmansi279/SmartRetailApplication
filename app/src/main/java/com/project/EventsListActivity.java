@@ -28,6 +28,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.project.util.Constants;
+
 public class EventsListActivity extends Activity {
     public ListView mListView;
     public EditText editText;
@@ -94,12 +96,12 @@ public class EventsListActivity extends Activity {
 
         if (zipcode == "")
 
-            url = "http://smartretailapp.appspot.com/smapp/default/getevents?uemail="
+            url = Constants.SMARTAPP_CONTEXT+"getevents?uemail="
                     + this.username + "&password=" + this.password;
 
         else
 
-            url = "http://smartretailapp.appspot.com/smapp/default/geteventsnearby?uemail="
+            url = Constants.SMARTAPP_CONTEXT+"geteventsnearby?uemail="
                     + this.username + "&password=" + this.password + "&zipcode=" + this.zipcode;
 
 
@@ -141,7 +143,7 @@ public class EventsListActivity extends Activity {
                         c.setEventTitle(ob.get("event_title").toString());
                         c.setEventAddr(ob.get("event_addr").toString());
                         c.setEventDesc(ob.get("event_desc").toString());
-                        c.setEventIconUrl("http://smartapp-service.appspot.com/smapp/default/download/"
+                        c.setEventIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
                                 + ob.get("ev_img_url").toString());
                         c.setEventTiming(ob.get("event_timing").toString());
 
