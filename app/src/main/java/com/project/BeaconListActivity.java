@@ -63,7 +63,7 @@ public class BeaconListActivity extends Activity {
 
 	public void getSearchResults() throws IOException {
 
-		String url = "http://smartapp-service.appspot.com/smapp/default/getallbeacons?uemail="+ this.username
+		String url = "http://smartretailapp.appspot.com/smapp/default/getallbeacons?uemail="+ this.username
 				+ "&password=" + this.password +"&placeid="+ this.placeid ;
 
 
@@ -112,7 +112,7 @@ public class BeaconListActivity extends Activity {
 						c.setBeaconBatteryLvl(ob.get("b_battery_lvl")
 								.toString());
 						c.setBeaconFactId(ob.get("b_f_id").toString());
-						c.setBeaconIconUrl("http://smartapp-service.appspot.com/smapp/default/download/"
+						c.setBeaconIconUrl("http://smartretailapp.appspot.com/smapp/default/download/"
 								+ ob.get("beacon_img_url").toString());
 
 						c.setBeaconStatus(ob.get("beacon_status").toString());

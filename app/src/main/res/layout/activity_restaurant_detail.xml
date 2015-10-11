@@ -69,8 +69,8 @@
         android:layout_below="@+id/rest_desc"
         android:layout_marginTop="10dp"
         android:background="@color/btn_bg"
-        android:onClick="viewEvents"
-        android:text="@string/btnEvent"
+        android:onClick="callRest"
+        android:text="Call Restaurant"
         android:textColor="@color/white" />
 
     <Button

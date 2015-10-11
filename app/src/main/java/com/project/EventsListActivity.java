@@ -127,6 +127,7 @@ public class EventsListActivity extends Activity {
 
             try {
                 response = ConnectionUtil.downloadUrl(urls[0]);
+                Log.v("res", response);
 
 
                 if (response != "error") {

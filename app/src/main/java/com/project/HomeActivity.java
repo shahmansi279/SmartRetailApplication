@@ -53,10 +53,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         this.username = i.getStringExtra("username");
         this.password = i.getStringExtra("password");
 
-
-
         startGimbalMonitoring();
-
         buildGoogleApiClient();
     }
 
@@ -73,9 +70,6 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         // PUSH SENDER ID HERE (Google
         // API project #) ##
         registerForPush(gcmSenderId);
-
-
-
 
     }
 
@@ -265,7 +259,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
 
             // Display the address string or an error message sent from the intent service.
             mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
-
+            showToast("mAddressOutput "+mAddressOutput);
             // Show a toast message if an address was found.
             if (resultCode == Constants.SUCCESS_RESULT) {
                 //showToast(mAddressOutput);

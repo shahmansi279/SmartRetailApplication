@@ -29,7 +29,7 @@
     <string name="optin_bottom_text">nearby places.</string>
     <string name="btnIntend">Start Place Monitoring</string>
     <string name="title_activity_home_admin">MainActivity</string>
-    <string name="manage_the_app">Smart City Guide Manager</string>
+    <string name="manage_the_app">Smart Retail Manager</string>
     <string name="view_messages">View Messages</string>
     <string name="manage_beacons">Manage Beacons</string>
     <string name="view_offers">Manage Offers</string>
