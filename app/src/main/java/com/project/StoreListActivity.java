@@ -42,6 +42,7 @@ public class StoreListActivity extends ActionBarActivity {
     public EditText editText;
     private String username = null;
     private String password = null;
+    private String zipcode = null;
     public CustomListAdapter adapter;
     ArrayList<StoreInfo> stores = new ArrayList<StoreInfo>();
 
@@ -52,6 +53,9 @@ public class StoreListActivity extends ActionBarActivity {
         Intent i = getIntent();
         this.username = i.getStringExtra("username");
         this.password = i.getStringExtra("password");
+        this.zipcode = i.getStringExtra("loc_zip_code");
+        Toast.makeText(getApplicationContext(), this.zipcode,
+                Toast.LENGTH_SHORT).show();
 
         ActionBar actionBar = getActionBar();
         // add the custom view to the action bar
@@ -116,8 +120,18 @@ public class StoreListActivity extends ActionBarActivity {
 
     public void getSearchResults() throws IOException {
 
-        String url = Constants.SMARTAPP_CONTEXT+"getstores?uemail="
-                + this.username + "&password=" + this.password;
+        String url;
+
+        if (zipcode == "")
+
+            url = Constants.SMARTAPP_CONTEXT+"getstores?uemail="
+                    + this.username + "&password=" + this.password;
+
+        else
+
+            url = Constants.SMARTAPP_CONTEXT+"getstoresnearby?uemail="
+                    + this.username + "&password=" + this.password + "&zipcode=" + this.zipcode;
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
