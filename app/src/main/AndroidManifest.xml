@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Google Maps for Android v2 needs this permission so that it may check the connection state as it must download data -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -159,6 +160,11 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIL" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CallActivity"
+            android:label="@string/app_name"
+            android:parentActivityName=".StoreDetailActivity" >
         </activity>
         <activity
             android:name=".BeaconInfoActivity"

@@ -99,14 +99,11 @@ public class StoreDetailActivity extends FragmentActivity implements
 
 	}
 
-	public void viewEvents(View v) {
+	public void callStore(View v) {
 		
-		Intent t = new Intent(getApplicationContext(),
-				EventsListActivity.class);
+		Intent t = new Intent(getApplicationContext(), CallActivity.class);
 		t.putExtra("username", this.username);
 		t.putExtra("password", this.password);
-		t.putExtra("storeId", this.storeId);
-
 		startActivity(t);
 	}
 
@@ -114,8 +111,7 @@ public class StoreDetailActivity extends FragmentActivity implements
 		
 		Log.v("store",this.storeName);
 
-		Intent t = new Intent(getApplicationContext(),
-				MailActivity.class);
+		Intent t = new Intent(getApplicationContext(), MailActivity.class);
 		t.putExtra("username", this.username);
 		t.putExtra("password", this.password);
 		t.putExtra("storeName", this.storeName);

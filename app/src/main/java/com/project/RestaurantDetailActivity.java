@@ -99,10 +99,9 @@ public class RestaurantDetailActivity extends FragmentActivity implements
 
 	}
 
-	public void viewEvents(View v) {
+	public void callRest(View v) {
 		
-		Intent t = new Intent(getApplicationContext(),
-				EventsListActivity.class);
+		Intent t = new Intent(getApplicationContext(), CallActivity.class);
 		t.putExtra("username", this.username);
 		t.putExtra("password", this.password);
 		t.putExtra("restId", this.restId);
