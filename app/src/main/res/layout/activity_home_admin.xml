@@ -26,8 +26,8 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
         android:background="@color/btn_bg"
-        android:onClick="viewPlaces"
-        android:text="@string/view_geo_fences"
+        android:onClick="viewOffers"
+        android:text="@string/view_offers"
         android:textColor="@color/white" />
 
     <Button

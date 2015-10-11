@@ -34,6 +34,7 @@ public class BeaconListActivity extends Activity {
 	public EditText editText;
 	private String username = null;
 	private String password = null;
+	private String placeid = null;
 	public CustomBeaconListAdapter adapterB;
 	ArrayList<BeaconInfo> beacons = new ArrayList<BeaconInfo>();
 
@@ -45,35 +46,10 @@ public class BeaconListActivity extends Activity {
 		Intent i = getIntent();
 		this.username = i.getStringExtra("username");
 		this.password = i.getStringExtra("password");
+		this.placeid = i.getStringExtra("placeid");
 
-		ActionBar actionBar = getActionBar();
-		// add the custom view to the action bar
-		actionBar.setCustomView(R.layout.actionbar_view);
-		EditText search = (EditText) actionBar.getCustomView().findViewById(
-				R.id.searchfield);
-		search.addTextChangedListener(new TextWatcher() {
 
-			@Override
-			public void onTextChanged(CharSequence cs, int arg1, int arg2,
-					int arg3) {
-
-				adapterB.getFilter().filter(cs.toString());
-			}
-
-			@Override
-			public void beforeTextChanged(CharSequence s, int arg1, int arg2,
-					int arg3) {
-
-			}
-
-			@Override
-			public void afterTextChanged(Editable arg0) {
-
-			}
-		});
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM
-				| ActionBar.DISPLAY_SHOW_HOME);
-
+		Log.v("place",this.placeid);
 		mListView = (ListView) findViewById(android.R.id.list);
 
 		try {
@@ -87,8 +63,11 @@ public class BeaconListActivity extends Activity {
 
 	public void getSearchResults() throws IOException {
 
-		String url = "http://smartapp-service.appspot.com/smartapp/default/getallbeacons?uemail="
-				+ this.username + "&password=" + this.password;
+		String url = "http://smartapp-service.appspot.com/smapp/default/getallbeacons?uemail="+ this.username
+				+ "&password=" + this.password +"&placeid="+ this.placeid ;
+
+
+		Log.v("urlbeacon",url);
 
 		ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -133,17 +112,18 @@ public class BeaconListActivity extends Activity {
 						c.setBeaconBatteryLvl(ob.get("b_battery_lvl")
 								.toString());
 						c.setBeaconFactId(ob.get("b_f_id").toString());
-						c.setBeaconIconUrl("http://smartapp-service.appspot.com/smartapp/default/download/"
-								+ "image.picture.87a0a86f3c777e77.636f6e73756d65725f626561636f6e2e706e67.png");
+						c.setBeaconIconUrl("http://smartapp-service.appspot.com/smapp/default/download/"
+								+ ob.get("beacon_img_url").toString());
 
 						c.setBeaconStatus(ob.get("beacon_status").toString());
+						Log.v("beacon_id", c.getBeaconName());
 
 						beacons.add(c);
 					}
 					response = "success";
 				} else {
 
-					response = "No Places to Display";
+					response = "No Sensors to Display";
 				}
 
 			} catch (Exception e) {

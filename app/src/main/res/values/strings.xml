@@ -32,7 +32,7 @@
     <string name="manage_the_app">Smart City Guide Manager</string>
     <string name="view_messages">View Messages</string>
     <string name="manage_beacons">Manage Beacons</string>
-    <string name="view_geo_fences">Manage Places</string>
+    <string name="view_offers">Manage Offers</string>
     <string name="title_activity_beaconlist">MainActivity</string>
     <string name="title_activity_beacon_item">MainActivity</string>
     <string name="title_activity_geofenceslist">MainActivity</string>
@@ -55,7 +55,7 @@
     <string name="btnMail">Report Issues</string>
     <string name="compose_email">Send Mail</string>
     <string name="offertext">Congrats you got the offer !!!</string>
-    <string name="btnAddPlace">Add Place</string>
+    <string name="btnAddPlace">Add Offer</string>
  <string name="placeName">Place Title</string>
   <string name="placeDesc">Description</string>
    <string name="placeAddr">Address</string>
@@ -76,4 +76,9 @@
     <string name="no_location_data_provided">No location data provided</string>
     <string name="service_not_available">Sorry, the service is not available</string>
     <string name="invalid_lat_long_used">Invalid latitude or longitude used</string>
+
+
+<string name="cannot">Cannot</string>
+<string name="album_name">CameraSample</string>
+
 </resources>

@@ -130,7 +130,9 @@ public class OfferListActivity extends Activity {
         else
 
             url = "http://smartretailapp.appspot.com/smapp/default/getoffersnearby?uemail="
-                    + this.username + "&password=" + this.password + "&zipcode" + this.zipcode;
+                    + this.username + "&password=" + this.password + "&zipcode=" + this.zipcode;
+
+
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();

@@ -100,7 +100,7 @@ public class EventsListActivity extends Activity {
         else
 
             url = "http://smartretailapp.appspot.com/smapp/default/geteventsnearby?uemail="
-                    + this.username + "&password=" + this.password + "&zipcode" + this.zipcode;
+                    + this.username + "&password=" + this.password + "&zipcode=" + this.zipcode;
 
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

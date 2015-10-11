@@ -103,6 +103,8 @@ public class AppService extends Service {
 
 			}
 
+
+
 			public void onBeaconSighting(BeaconSighting sighting,
 					List<Visit> visits) {
 				// This will be invoked when a beacon assigned to a place within
