@@ -38,7 +38,7 @@
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDnemV5jTfKlIUaZXLF3aXdFIn_XQSy40A"/>
+            android:value=""/>
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"

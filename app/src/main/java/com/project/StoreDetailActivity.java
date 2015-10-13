@@ -302,7 +302,7 @@ public class StoreDetailActivity extends FragmentActivity implements
 								.fromResource(R.drawable.loc)));
 
 				if (i == 0)
-					mMap.moveCamera( CameraUpdateFactory.newLatLngZoom((latLng) , 18) );
+					mMap.moveCamera( CameraUpdateFactory.newLatLngZoom((latLng) , 17) );
 					//mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 			}
 		}

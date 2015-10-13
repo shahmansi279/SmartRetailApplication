@@ -93,6 +93,7 @@ public class RegisterActivity extends Activity {
 					int code = 0;
 					try {
 						response=	ConnectionUtil.downloadUrl(url);
+						Log.v("response",response);
 
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -104,7 +105,7 @@ public class RegisterActivity extends Activity {
 			@Override
 			protected void onPostExecute(String result) {
 
-				if (result == "success") {
+				if (result != "error") {
 					super.onPostExecute(result);
 
 					Toast.makeText(getApplicationContext(), "Registered User Successfully",

@@ -1,5 +1,11 @@
 package com.project;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -14,6 +20,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -21,51 +28,44 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class OfferDetailActivity extends Activity {
+
     private String username = null;
     private String password = null;
-    private TextView name = null;
+    private TextView text = null;
     private TextView desc = null;
-    private TextView ovalid = null;
+    private TextView valid = null;
     private ImageView icon = null;
-    ArrayList<OfferInfo> offers = new ArrayList<OfferInfo>();
+
+    //ArrayList<OfferInfo> offers = new ArrayList<OfferInfo>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offer_detail);
 
-        Intent intent = getIntent();
-        this.username = intent.getStringExtra("username");
-        this.password = intent.getStringExtra("password");
-
-        name = (TextView) findViewById(R.id.offertext);
+        text = (TextView) findViewById(R.id.offertext);
         desc = (TextView) findViewById(R.id.offerdetail);
         icon = (ImageView) findViewById(R.id.icon);
-        ovalid = (TextView) findViewById(R.id.offervalid);
-        Intent i = getIntent();
+        valid = (TextView) findViewById(R.id.offervalid);
 
-        //String placeid = i.getStringExtra("placeid");
-        String placeid = "1";
-        getOffers(placeid);
-    }
+        Intent t = getIntent();
+        this.username = t.getStringExtra("username");
+        this.password = t.getStringExtra("password");
+        String offerTitle = t.getStringExtra("OfferTitle");
+        String offerDesc = t.getStringExtra("OfferDesc");
+        String timing = "Valid till : " + t.getStringExtra("OfferT");
+        String url = t.getStringExtra("OfferUrl");
+        text.setText(offerTitle);
+        desc.setText(offerDesc);
+        valid.setText(timing);
 
-    private void getOffers(String placeid) {
+        icon = (ImageView) findViewById(R.id.icon);
 
-        String url = "http://smartretailapp.appspot.com/smapp/default/getoffers?uemail="
-                + this.username + "&password=" + this.password;
-
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
-
-            DownloadWebPageTask task = new DownloadWebPageTask();
-            task.execute(url);
-        } else {
+        if (icon != null) {
+            // new ImageDownloaderTask(mCardImageView).execute(cardUrl);
+            Picasso.with(getBaseContext()).load(url).into(icon);
 
         }
-
-        // TODO Auto-generated method stub
-
     }
 
     @Override
@@ -85,68 +85,5 @@ public class OfferDetailActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public class DownloadWebPageTask extends AsyncTask<String, Void, String> {
-
-        protected String doInBackground(String... urls) {
-
-            String response = "";
-
-
-            int code = 0;
-
-
-            try {
-
-                response = ConnectionUtil.downloadUrl(urls[0]);
-                JSONArray jso = new JSONArray(response);
-
-                if (response != "error") {
-                    for (int i = 0; i < jso.length(); i++) {
-                        OfferInfo c = new OfferInfo();
-                        JSONObject ob = (JSONObject) jso.get(i);
-                        c.setOfferDesc(ob.get("offer_desc").toString());
-                        c.setOfferTitle(ob.get("offer_title").toString());
-                        c.setOfferId(ob.get("id").toString());
-                        c.setOfferValidity(ob.get("offer_validity").toString());
-                        c.setOfferIconUrl("http://smartapp-service.appspot.com/smapp/default/download/"
-                                + ob.get("offer_img_url").toString());
-
-                        offers.add(c);
-                    }
-
-                    response="success";
-
-                } else {
-
-                    response = "No Offers to Display";
-                }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return response;
-        }
-
-        protected void onPostExecute(String result) {
-
-            if (result == "success") {
-
-                name.setText(offers.get(0).getOfferTitle());
-                desc.setText(offers.get(0).getOfferDesc());
-                ovalid.setText(offers.get(0).getOfferValidity());
-
-                // set offer image bitmap
-                Picasso.with(getApplicationContext())
-                        .load(offers.get(0).getOfferIconUrl()).into(icon);
-            } else {
-                Toast.makeText(getApplicationContext(), result,
-                        Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
     }
 }
