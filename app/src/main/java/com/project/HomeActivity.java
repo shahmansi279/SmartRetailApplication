@@ -48,6 +48,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
 
         mResultReceiver = new AddressResultReceiver(new Handler());
         mAddressOutput = "";
+        mAddressOutput="95054";
 
         Intent i = getIntent();
         this.username = i.getStringExtra("username");
@@ -259,7 +260,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
 
             // Display the address string or an error message sent from the intent service.
             mAddressOutput = resultData.getString(Constants.RESULT_DATA_KEY);
-            showToast("mAddressOutput "+mAddressOutput);
+           // showToast("mAddressOutput "+mAddressOutput);
             // Show a toast message if an address was found.
             if (resultCode == Constants.SUCCESS_RESULT) {
                 //showToast(mAddressOutput);

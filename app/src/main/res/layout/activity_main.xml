@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.project.MainActivity"
-    android:background="@color/white"
+
     >
 
    <!--   <TextView
@@ -27,13 +27,13 @@
         android:id="@+id/button1"
         android:layout_width="130dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="58dp"
         android:onClick="login"
         android:background="@color/btn_bg"
         android:textColor="@color/white"
         android:text="@string/log_in"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_marginTop="68dp" />
 
     <Button
         android:id="@+id/button2"
@@ -44,15 +44,15 @@
         android:textColor="@color/white"
         android:text="@string/register"
         android:layout_alignTop="@+id/button1"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/imageView" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+   <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp"
-        android:src="@drawable/smartretailtext"/>
+       android:src="@drawable/smartshop"
+       android:layout_alignParentTop="true"
+       android:layout_centerHorizontal="true"
+       android:layout_marginTop="43dp" />
 
 </RelativeLayout>

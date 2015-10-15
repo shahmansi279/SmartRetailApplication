@@ -31,7 +31,7 @@
     <string name="title_activity_home_admin">MainActivity</string>
     <string name="manage_the_app">Smart Retail Manager</string>
     <string name="view_messages">View Messages</string>
-    <string name="manage_beacons">Manage Beacons</string>
+    <string name="manage_beacons">Manage Sensors</string>
     <string name="view_offers">Manage Offers</string>
     <string name="title_activity_beaconlist">MainActivity</string>
     <string name="title_activity_beacon_item">MainActivity</string>

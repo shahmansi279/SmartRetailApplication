@@ -44,6 +44,7 @@ import com.project.GimbalEvent.TYPE;
 import com.gimbal.android.BeaconSighting;
 
 public class AppService extends Service {
+
 	private static final int MAX_NUM_EVENTS = 100;
 	private LinkedList<GimbalEvent> events;
 	private PlaceEventListener placeEventListener;

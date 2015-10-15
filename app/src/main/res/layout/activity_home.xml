@@ -12,17 +12,16 @@
         android:id="@+id/imageButton1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="101dp"
         android:adjustViewBounds="true"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/shop"
         android:onClick="stores"
-        android:contentDescription="Stores" />
+        android:contentDescription="Stores"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -64,24 +63,22 @@
         android:id="@+id/imageButton5"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/imageButton1"
-        android:layout_alignStart="@+id/imageButton1"
-        android:layout_below="@+id/imageButton1"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="65dp"
         android:src="@drawable/event"
         android:onClick="events"
-        android:contentDescription="Events" />
+        android:contentDescription="Events"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/imageButton1" />
 
     <ImageButton
         android:id="@+id/imageButton6"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_alignLeft="@+id/imageButton2"
-        android:layout_alignStart="@+id/imageButton2"
-        android:layout_alignTop="@+id/imageButton5"
         android:src="@drawable/offer"
         android:onClick="offers"
-        android:contentDescription="Offers" />
+        android:contentDescription="Offers"
+        android:layout_alignTop="@+id/imageButton5"
+        android:layout_alignStart="@+id/textView1" />
 
     <!-- <TextView
         android:id="@+id/textView4"

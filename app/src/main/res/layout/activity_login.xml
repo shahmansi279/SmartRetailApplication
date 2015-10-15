@@ -6,18 +6,19 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.project.LoginActivity" >
+    tools:context="com.project.LoginActivity"
+    >
 
         <EditText
             android:id="@+id/editText1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="78dp"
+            android:layout_marginTop="148dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="@string/email" >
+            android:hint="@string/email"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/editText2">
 
             <requestFocus />
         </EditText>
@@ -26,34 +27,36 @@
             android:id="@+id/editText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/editText1"
-            android:layout_below="@+id/editText1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="29dp"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:layout_below="@+id/editText1"
+            android:layout_centerHorizontal="true" />
 
         <Button
             android:id="@+id/button1"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/editText2"
-            android:layout_marginTop="48dp"
             android:onClick="login"
             android:textColor="@color/white"
             android:background="@color/btn_bg"
-            android:text="@string/log_in" />
+            android:text="@string/log_in"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="74dp"
+            android:layout_below="@+id/editText2"
+            android:layout_alignParentStart="true" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/button1"
-            android:layout_alignParentEnd="true"
             android:onClick="cancel"
             android:textColor="@color/white"
             android:background="@color/btn_bg"
-            android:text="@string/cancel" />
+            android:text="@string/cancel"
+            android:layout_alignTop="@+id/button1"
+            android:layout_toEndOf="@+id/button1"
+            android:layout_marginStart="29dp" />
     
 </RelativeLayout>
