@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.project.util.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -40,7 +42,7 @@ public class HomeAdminActivity extends Activity {
     public void getAdminDetails() {
 
 
-        String url = "https://smartretailapp.appspot.com/smapp/default/getAdminDetails"
+        String url = Constants.SMARTAPP_CONTEXT+"getAdminDetails"
 
                 + "?uemail="
                 + username.toString()

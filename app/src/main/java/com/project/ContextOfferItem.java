@@ -38,7 +38,10 @@ public class ContextOfferItem extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_context_offer_item);
+        Log.v("Contextual Offer out ", "temp");
         name = (TextView) findViewById(R.id.offertext);
         desc = (TextView) findViewById(R.id.offerdetail);
         icon = (ImageView) findViewById(R.id.icon);
@@ -46,6 +49,7 @@ public class ContextOfferItem extends Activity {
         Intent i = getIntent();
 
         String placeid = i.getStringExtra("placeid");
+        Log.v("Contextual Offer",placeid);
 
         getOffers(placeid);
     }
@@ -110,9 +114,11 @@ public class ContextOfferItem extends Activity {
                         c.setOfferTitle(ob.get("offer_title").toString());
                         c.setOfferId(ob.get("id").toString());
                         c.setOfferValidity(ob.get("offer_validity").toString());
-                        c.setOfferIconUrl(Constants.SMARTAPP_CONTEXT+"download/"
+                        c.setOfferIconUrl(Constants.SMARTAPP_CONTEXT + "download/"
                                 + ob.get("offer_img_url").toString());
 
+
+                        Log.v("Contextual Offer Desc", c.getOfferDesc());
                         offers.add(c);
                     }
                     response = "success";

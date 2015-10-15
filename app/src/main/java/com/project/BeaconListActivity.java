@@ -50,7 +50,7 @@ public class BeaconListActivity extends Activity {
 		this.placeid = i.getStringExtra("placeid");
 
 
-		Log.v("place",this.placeid);
+		Log.v("place", this.placeid);
 		mListView = (ListView) findViewById(android.R.id.list);
 
 		try {

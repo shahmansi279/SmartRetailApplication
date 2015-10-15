@@ -66,7 +66,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
         CommunicationManager.getInstance().startReceivingCommunications();
 
         // Setup Push Communication
-        String gcmSenderId = "642988732524"; // <--- SET THIS STRING TO YOUR
+        String gcmSenderId = "486190651958"; // <--- SET THIS STRING TO YOUR
         // PUSH SENDER ID HERE (Google
         // API project #) ##
         registerForPush(gcmSenderId);

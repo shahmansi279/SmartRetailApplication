@@ -58,7 +58,7 @@ public class AppService extends Service {
 				GimbalDAO.getEvents(getApplicationContext()));
 
 		Gimbal.setApiKey(this.getApplication(),
-				"54691f4f-73c8-47c8-b5e8-79aeab6d39c5");
+				"30de5e42-21ca-4eb2-a5f6-2f45a1691ccb");
 		Toast.makeText(getApplicationContext(), "Starting App Service",
 			Toast.LENGTH_SHORT).show();
 
@@ -71,22 +71,26 @@ public class AppService extends Service {
 				addEvent(new GimbalEvent(TYPE.PLACE_ENTER, visit.getPlace()
 						.getName(), new Date(visit.getArrivalTimeInMillis())));
 
-				String test =  visit.getPlace().getName();
+				String test =  visit.getPlace().getIdentifier();
 					
 				Toast.makeText(getApplicationContext(), test,
 						Toast.LENGTH_SHORT).show();
-				try {
+					try {
 					Intent intent = new Intent();
 					intent.setAction(Intent.ACTION_MAIN);
 					intent.addCategory(Intent.CATEGORY_LAUNCHER);
-					intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		
 					intent.putExtra("placeid", visit.getPlace().getIdentifier());
+
 					ComponentName cn = new ComponentName(
 							getApplicationContext(), ContextOfferItem.class);
 					intent.setComponent(cn);
+					Toast.makeText(getApplicationContext(), "Starting Activity for Offer",
+								Toast.LENGTH_SHORT).show();
 					startActivity(intent);
+
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -117,6 +121,7 @@ public class AppService extends Service {
 			}
 
 		};
+
 		PlaceManager.getInstance().addListener(placeEventListener);
 
 		bcEventListener = new BeaconEventListener() {

@@ -48,23 +48,6 @@ public class ManageOfferListActivity extends ActionBarActivity {
 
     //List of types for upload photo
 
-    private static final int ACTION_TAKE_PHOTO_B = 1;
-
-    private static final String BITMAP_STORAGE_KEY = "viewbitmap";
-    private static final String IMAGEVIEW_VISIBILITY_STORAGE_KEY = "imageviewvisibility";
-
-    private Bitmap mImageBitmap;
-
-    private Uri fileUri;
-    public static final int MEDIA_TYPE_IMAGE = 1;
-    public static final int MEDIA_TYPE_VIDEO = 2;
-
-    private String mCurrentPhotoPath;
-
-    private static final String JPEG_FILE_PREFIX = "IMG_";
-    private static final String JPEG_FILE_SUFFIX = ".jpg";
-
-    private AlbumStorageDirFactory mAlbumStorageDirFactory = null;
 
 
 
@@ -78,6 +61,7 @@ public class ManageOfferListActivity extends ActionBarActivity {
     ArrayList<OfferInfo> offers = new ArrayList<OfferInfo>();
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adminofferlist);
 
@@ -88,11 +72,7 @@ public class ManageOfferListActivity extends ActionBarActivity {
         Log.v("place",this.placeid);
 
 
-        Button picBtn = (Button) findViewById(R.id.btnIntend);
-        setBtnListenerOrDisable(picBtn, mTakePicOnClickListener,
-                MediaStore.ACTION_IMAGE_CAPTURE);
 
-        mAlbumStorageDirFactory = new BaseAlbumDirFactory();
 
         mListView = (ListView) findViewById(android.R.id.list);
 
@@ -244,170 +224,16 @@ public class ManageOfferListActivity extends ActionBarActivity {
 
 
 
-    //Adding the Content to fetch camera intent.
 
 
-    /* Photo album for this application */
-    private String getAlbumName() {
-        return getString(R.string.album_name);
-    }
 
-    private File getAlbumDir() {
-        File storageDir = null;
 
-        if (Environment.MEDIA_MOUNTED.equals(Environment
-                .getExternalStorageState())) {
+    public void launchAddOfferActivity(View v) {
 
-            storageDir = mAlbumStorageDirFactory
-                    .getAlbumStorageDir(getAlbumName());
-
-            if (storageDir != null) {
-                if (!storageDir.mkdirs()) {
-                    if (!storageDir.exists()) {
-                        Log.d("CameraSample", "failed to create directory");
-                        return null;
-                    }
-                }
-            }
-
-        } else {
-            Log.v(getString(R.string.app_name),
-                    "External storage is not mounted READ/WRITE.");
-        }
-
-        return storageDir;
-    }
-
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss")
-                .format(new Date());
-        String imageFileName = JPEG_FILE_PREFIX + timeStamp + "_";
-        File albumF = getAlbumDir();
-        File imageF = File.createTempFile(imageFileName, JPEG_FILE_SUFFIX,
-                albumF);
-
-        return imageF;
-    }
-
-    private File setUpPhotoFile() throws IOException {
-
-        File f = createImageFile();
-        mCurrentPhotoPath = f.getAbsolutePath();
-
-        return f;
-    }
-
-    private void setPic() {
-
-        int targetW = 200;
-
-        int targetH = 200;
-
-		/* Get the size of the image */
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
-
-		/* Figure out which way needs to be reduced less */
-        int scaleFactor = 1;
-        if ((targetW > 0) || (targetH > 0)) {
-            scaleFactor = Math.min(photoW / targetW, photoH / targetH);
-        }
-
-		/* Set bitmap options to scale the image decode target */
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-		/* Decode the JPEG file into a Bitmap */
-        Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
-
-    }
-
-    private void galleryAddPic() {
-        Intent mediaScanIntent = new Intent(
-                "android.intent.action.MEDIA_SCANNER_SCAN_FILE");
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
-    }
-
-    private void dispatchTakePictureIntent(int actionCode) {
-
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-        switch (actionCode) {
-            case ACTION_TAKE_PHOTO_B:
-                File f = null;
-
-                try {
-                    f = setUpPhotoFile();
-                    mCurrentPhotoPath = f.getAbsolutePath();
-                    fileUri = Uri.fromFile(f);
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                            Uri.fromFile(f));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    f = null;
-                    mCurrentPhotoPath = null;
-                }
-                break;
-
-            default:
-                break;
-        } // switch
-
-        startActivityForResult(takePictureIntent, actionCode);
-    }
-
-    private void handleBigCameraPhoto() {
-
-        if (mCurrentPhotoPath != null) {
-            setPic();
-            galleryAddPic();
-            uploadPic();
-            mCurrentPhotoPath = null;
-        }
-
-    }
-
-    private void uploadPic() {
-
-    }
-
-    Button.OnClickListener mTakePicOnClickListener = new Button.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            dispatchTakePictureIntent(ACTION_TAKE_PHOTO_B);
-        }
-    };
-
-    /** Called when the activity is first created. */
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case ACTION_TAKE_PHOTO_B: {
-                if (resultCode == RESULT_OK) {
-
-                    launchUploadActivity(true);
-                    handleBigCameraPhoto();
-                }
-                break;
-            } // ACTION_TAKE_PHOTO_B
-
-        } // switch
-    }
-
-    private void launchUploadActivity(boolean b) {
         // TODO Auto-generated method stub
 
-        Intent i = new Intent(ManageOfferListActivity.this, UploadActivity.class);
-        i.putExtra("filePath", fileUri.getPath());
+        Intent i = new Intent(ManageOfferListActivity.this, AddOfferActivity.class);
+
         i.putExtra("username", this.username);
         i.putExtra("password", this.password);
         startActivity(i);
@@ -417,11 +243,6 @@ public class ManageOfferListActivity extends ActionBarActivity {
     // Some lifecycle callbacks so that the image can survive orientation change
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable(BITMAP_STORAGE_KEY, mImageBitmap);
-
-        outState.putBoolean(IMAGEVIEW_VISIBILITY_STORAGE_KEY,
-                (mImageBitmap != null));
-        outState.putParcelable("file_uri", fileUri);
 
         super.onSaveInstanceState(outState);
     }
@@ -429,8 +250,6 @@ public class ManageOfferListActivity extends ActionBarActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mImageBitmap = savedInstanceState.getParcelable(BITMAP_STORAGE_KEY);
-        fileUri = savedInstanceState.getParcelable("file_uri");
 
     }
 
