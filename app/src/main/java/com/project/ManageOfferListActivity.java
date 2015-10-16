@@ -89,7 +89,7 @@ public class ManageOfferListActivity extends ActionBarActivity {
     public void getSearchResults() throws IOException {
 
         String url = Constants.SMARTAPP_CONTEXT+ "getplaceoffers?uemail=" + this.username
-                + "&password=" + this.password +"&aplaceid="+ this.placeid ;
+                + "&password=" + this.password +"&placeid="+ this.placeid ;
 
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();

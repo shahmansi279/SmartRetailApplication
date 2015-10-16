@@ -48,7 +48,7 @@ public class HomeActivity extends Activity implements ConnectionCallbacks, OnCon
 
         mResultReceiver = new AddressResultReceiver(new Handler());
         mAddressOutput = "";
-        mAddressOutput="95054";
+        //mAddressOutput="95054";
 
         Intent i = getIntent();
         this.username = i.getStringExtra("username");

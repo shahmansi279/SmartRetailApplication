@@ -55,7 +55,7 @@
     <TextView
         android:id="@+id/event_desc"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/map"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
